@@ -19,7 +19,7 @@
     "eslint-config-defaults": "^9.0.0",
     "eslint-plugin-react": "^7.21.5",
     "gulp": "^4.0.1",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-cache-bust": "^1.4.0",
     "gulp-cli": "^2.3.0",
     "gulp-environments": "^1.0.1",
