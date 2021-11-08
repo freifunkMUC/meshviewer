@@ -52,7 +52,7 @@
     "d3-zoom": "^1.8.3",
     "leaflet": "^1.7.1",
     "moment": "^2.29.1",
-    "navigo": "^7.1.2",
+    "navigo": "^8.11.1",
     "node-polyglot": "2.2.2",
     "promise-polyfill": "^8.2.0",
     "rbush": "^3.0.1",
