@@ -331,7 +331,7 @@
       },
       {
          "domain": "ffmuc_unifi_respondd_fallback",
-         "name": "FFMUC Unifi Fallback"
+         "name": "FFMUC UniFi Fallback"
       },
       {
          "domain": "ffmuc",
