@@ -19,43 +19,43 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run build
-      
+
       - name: rsync deployments for map.ffmuc.net (build)
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete --exclude .ssh
-          path: build/  
-          remote_path: /srv/www/map.ffmuc.net/  # Remote-Pfad für die erste Konfiguration
-          remote_host: ${{ matrix.target }}.ext.ffmuc.net  # Verwenden des gemeinsamen Targets
+          path: build/
+          remote_path: /srv/www/map.ffmuc.net/ # Remote-Pfad für die erste Konfiguration
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net # Verwenden des gemeinsamen Targets
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
-          
+
       - name: rsync deployments for map.ffmuc.net (config)
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avz
           path: config-ffmuc.json
-          remote_path: /srv/www/map.ffmuc.net/config.json  # Remote-Pfad für die zweite Konfiguration
-          remote_host: ${{ matrix.target }}.ext.ffmuc.net  # Verwenden des gemeinsamen Targets
+          remote_path: /srv/www/map.ffmuc.net/config.json # Remote-Pfad für die zweite Konfiguration
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net # Verwenden des gemeinsamen Targets
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
-          
+
       - name: rsync deployments for map.freifunk-donau-ries.de (build)
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete --exclude .ssh
           path: build/
-          remote_path: /srv/www/map.freifunk-donau-ries.de/  # Remote-Pfad für die zweite Konfiguration
-          remote_host: ${{ matrix.target }}.ext.ffmuc.net  # Verwenden des gemeinsamen Targets
+          remote_path: /srv/www/map.freifunk-donau-ries.de/ # Remote-Pfad für die zweite Konfiguration
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net # Verwenden des gemeinsamen Targets
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
-                  
+
       - name: rsync deployments for map.freifunk-donau-ries.de (config)
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avz
           path: config-ffdon.json
-          remote_path: /srv/www/map.freifunk-donau-ries.de/config.json  # Remote-Pfad für die zweite Konfiguration
-          remote_host: ${{ matrix.target }}.ext.ffmuc.net  # Verwenden des gemeinsamen Targets
+          remote_path: /srv/www/map.freifunk-donau-ries.de/config.json # Remote-Pfad für die zweite Konfiguration
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net # Verwenden des gemeinsamen Targets
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
