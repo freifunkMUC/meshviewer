@@ -5,6 +5,7 @@ on:
       - main
 jobs:
   map-deploy:
+    if: github.repository_owner == 'freifunkMUC'
     strategy:
       fail-fast: false
       matrix:
