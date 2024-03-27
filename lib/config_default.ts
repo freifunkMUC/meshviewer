@@ -366,6 +366,7 @@ export const config: Config = {
     "AP121U",
     "D-Link DIR-615",
     "D-Link DIR-615 D",
+    "D-Link DIR-825",
     "AVM FRITZ!Box 7320",
     "AVM FRITZ!Box 7330",
     "AVM FRITZ!Box 7330 SL",
