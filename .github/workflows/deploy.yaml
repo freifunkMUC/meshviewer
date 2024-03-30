@@ -1,0 +1,31 @@
+name: DEPLOY
+on:
+  push:
+    branches:
+      - main
+jobs:
+  map-deploy:
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [webfrontend03, webfrontend04, webfrontend05, webfrontend06]
+        node-version: [20.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run build
+      - run: cp config.json build/
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr --delete --exclude .ssh
+          path: build/
+          remote_path: /srv/www/map.ffmuc.net/
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net
+          remote_user: deploy-map
+          remote_key: ${{ secrets.DEPLOY_KEY }}
