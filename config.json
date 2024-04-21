@@ -346,6 +346,10 @@
           "name": "Freising"
        },
        {
+         "domain": "ffmuc_ulm",
+         "name": "Ulm"
+       },
+       {
           "domain": "ffwert_city",
           "name": "Wertingen - City"
        },
