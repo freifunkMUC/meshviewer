@@ -360,6 +360,10 @@
        {
           "domain": "ffmuc_unifi_respondd_fallback",
           "name": "UniFi"
+       },
+       {
+          "domain": "ffmuc_omada_respondd_fallback",
+          "name": "Omada"
        }
     ],
     "linkList": [
