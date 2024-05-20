@@ -362,7 +362,7 @@
           "name": "UniFi"
        },
        {
-          "domain": "ffmuc_omada_respondd_fallback",
+          "domain": "omada_respondd_fallback",
           "name": "Omada"
        }
     ],
