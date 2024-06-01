@@ -14,7 +14,7 @@
     "@vite-pwa/assets-generator": "^0.0.10",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.1.0",
-    "prettier": "3.0.3",
+    "prettier": "3.3.0",
     "sass": "^1.69.7",
     "typescript": "^5.2.2",
     "vite": "^5.0.12",
