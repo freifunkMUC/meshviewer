@@ -19,7 +19,7 @@
     [49.9282, 9.3164]
   ],
   "domainNames": [
-    { "domain": "ffffm_60431", "name": "60431 Frankfurt am Main" },
+    { "domain": "ffffm_60431", "name": "60431 Frankfurt am Main", "filterClients": "false" },
     { "domain": "ffffm_default", "name": "Default" }
   ],
   "nodeInfos": [
