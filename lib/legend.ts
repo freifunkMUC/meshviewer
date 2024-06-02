@@ -14,8 +14,39 @@ export const Legend = function (language: ReturnType<typeof Language>) {
   self.setData = function setData(data: ObjectsLinksAndNodes) {
     let totalNodes = Object.keys(data.nodeDict).length;
     let totalOnlineNodes = data.nodes.online.length;
+
+    let config = window.config;
+    var filterNodes = [];
+    if (config.domainNames) {
+      let domains = config.domainNames.filter(function (domain) {
+          if(typeof domain.filterClients !== 'undefined'){
+            return domain.filterClients;
+          }else{
+            return false
+          }
+        });
+        domains.forEach((domain) => {
+          filterNodes.push(domain.name)
+          filterNodes.push(domain.domain)
+        })
+    }
+
+    let totalNodesFiltert = data.nodes.online.filter(function (node) {
+      var isFiltert = true
+      // filter nodes based on the domain
+      if(filterNodes.includes(node.domain)){
+        isFiltert = false
+      }
+      // also filter nodes based on the firmware base (Domainname) for custom respondd
+      if(filterNodes.includes(node.firmware.base))[
+        isFiltert = false
+      ]
+      return isFiltert
+    })
+
+
     let totalClients = helper.sum(
-      data.nodes.online.map(function (node) {
+      totalNodesFiltert.map(function (node) {
         return node.clients;
       }),
     );
