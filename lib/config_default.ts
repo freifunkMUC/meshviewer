@@ -40,6 +40,7 @@ interface Icon {
 export interface Domain {
   name: string;
   domain: string;
+  filterClients: boolean;
 }
 
 export interface LinkInfo {

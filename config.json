@@ -359,11 +359,13 @@
        },
        {
           "domain": "ffmuc_unifi_respondd_fallback",
-          "name": "UniFi"
+          "name": "UniFi",
+          "filterClients": true
        },
        {
           "domain": "omada_respondd_fallback",
-          "name": "Omada"
+          "name": "Omada",
+          "filterClients": true
        }
     ],
     "linkList": [
