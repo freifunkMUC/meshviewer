@@ -1,5 +1,5 @@
-import { LanguageCode } from "./utils/language.js";
-import { Node, NodeId } from "./utils/node.js";
+import { LanguageCode } from "./utils/language";
+import { Node, NodeId } from "./utils/node";
 import { GeoJSONOptions, GridLayerOptions, LatLngBoundsExpression } from "leaflet";
 import { GeoJsonObject } from "geojson";
 
@@ -43,17 +43,16 @@ export interface Domain {
   filterClients: boolean;
 }
 
-interface Info {
+export interface LinkInfo {
   name: string;
   title: string;
   href: string;
-  image?: string;
-  width?: string;
-  height?: string;
+  image: string;
+  width: string;
+  height: string;
 }
 
-export type LinkInfo = Info;
-export type NodeInfo = Info;
+export type NodeInfo = LinkInfo;
 
 export interface Link {
   title: string;
@@ -453,8 +452,6 @@ export const config: Config = {
     "Ubiquiti AirRouter",
     "VoCore 8M",
     "VoCore 16M",
-    "WD My Net N600",
-    "WD My Net N750",
   ],
   deprecated: [
     "TP-LINK RE305",

@@ -1,5 +1,5 @@
-import { _ } from "./utils/language.js";
-import { CanRender } from "./container.js";
+import { _ } from "./utils/language";
+import { CanRender } from "./container";
 
 export const Sidebar = function (el: HTMLElement) {
   const self = {

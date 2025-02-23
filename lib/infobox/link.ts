@@ -1,10 +1,8 @@
-import { classModule, eventListenersModule, h, init, propsModule, styleModule } from "snabbdom";
-import { _ } from "../utils/language.js";
-import * as helper from "../utils/helper.js";
-import { LinkInfo } from "../config_default.js";
-import { Link as LinkData } from "../utils/node.js";
-
-const patch = init([classModule, propsModule, styleModule, eventListenersModule]);
+import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
+import { _ } from "../utils/language";
+import * as helper from "../utils/helper";
+import { LinkInfo } from "../config_default";
+import { Link as LinkData } from "../utils/node";
 
 function showStatImg(images: HTMLElement[], linkInfo: LinkInfo, link: LinkData, time: string) {
   let subst: ReplaceMapping = {
@@ -21,8 +19,8 @@ function showStatImg(images: HTMLElement[], linkInfo: LinkInfo, link: LinkData, 
     "{LOCALE}": _.locale(),
   };
 
-  images.push(h("h4", helper.listReplace(linkInfo.name, subst)) as unknown as HTMLElement);
-  images.push(helper.showStat(linkInfo, subst));
+  images.push(V.h("h4", helper.listReplace(linkInfo.name, subst)));
+  images.push(helper.showStat(V, linkInfo, subst));
 }
 
 export const Link = function (el: HTMLElement, linkData: LinkData[], linkScale: (t: any) => any) {
@@ -44,20 +42,20 @@ export const Link = function (el: HTMLElement, linkData: LinkData[], linkScale: 
     let img = [];
     let time = linkData[0].target.lastseen.format("DDMMYYYYHmmss");
 
-    patch(
+    header = V.patch(
       header,
-      h(
+      V.h(
         "div",
-        h("h2", [
-          h(
+        V.h("h2", [
+          V.h(
             "a",
             {
               props: { href: router.generateLink({ node: linkData[0].source.node_id }) },
             },
             linkData[0].source.hostname,
           ),
-          h("span", " - "),
-          h(
+          V.h("span", " - "),
+          V.h(
             "a",
             {
               props: { href: router.generateLink({ node: linkData[0].target.node_id }) },
@@ -69,21 +67,23 @@ export const Link = function (el: HTMLElement, linkData: LinkData[], linkScale: 
     );
 
     helper.attributeEntry(
+      V,
       children,
       "node.hardware",
       (linkData[0].source.model ? linkData[0].source.model + " – " : "") +
         (linkData[0].target.model ? linkData[0].target.model : ""),
     );
-    helper.attributeEntry(children, "node.distance", helper.showDistance(linkData[0]));
+    helper.attributeEntry(V, children, "node.distance", helper.showDistance(linkData[0]));
 
     linkData.forEach(function (link) {
       children.push(
-        h("tr", { props: { className: "header" } }, [h("th", _.t("node.connectionType")), h("th", link.type)]),
+        V.h("tr", { props: { className: "header" } }, [V.h("th", _.t("node.connectionType")), V.h("th", link.type)]),
       );
       helper.attributeEntry(
+        V,
         children,
         "node.tq",
-        h(
+        V.h(
           "span",
           { style: { color: linkScale((link.source_tq + link.target_tq) / 2) } },
           helper.showTq(link.source_tq) + " - " + helper.showTq(link.target_tq),
@@ -103,10 +103,10 @@ export const Link = function (el: HTMLElement, linkData: LinkData[], linkScale: 
       });
     }
 
-    let elNew = h("table", children);
-    patch(table, elNew);
-    table.classList.add("attributes");
-    patch(images, h("div", img));
+    let elNew = V.h("table", children);
+    let pTable = (table = V.patch(table, elNew));
+    pTable.elm.classList.add("attributes");
+    images = V.patch(images, V.h("div", img));
   };
 
   self.setData = function setData(data: { links: LinkData[] }) {

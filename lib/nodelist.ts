@@ -1,10 +1,10 @@
-import { h, VNode } from "snabbdom";
-import { _ } from "./utils/language.js";
-import { Heading, SortTable } from "./sorttable.js";
-import * as helper from "./utils/helper.js";
-import { Node } from "./utils/node.js";
-import { CanSetData, ObjectsLinksAndNodes } from "./datadistributor.js";
-import { CanRender } from "./container.js";
+import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
+import { _ } from "./utils/language";
+import { Heading, SortTable } from "./sorttable";
+import * as helper from "./utils/helper";
+import { Node } from "./utils/node";
+import { CanSetData, ObjectsLinksAndNodes } from "./datadistributor";
+import { CanRender } from "./container";
 
 function showUptime(uptime: number) {
   // 1000ms are 1 second and 60 second are 1min: 60 * 1000 =  60000
@@ -65,12 +65,12 @@ export const Nodelist = function (): CanSetData & CanRender {
   };
 
   function renderRow(node: Node) {
-    let td0Content: string | VNode = "";
+    let td0Content = "";
     if (helper.hasLocation(node)) {
-      td0Content = h("span", { props: { className: "icon ion-location", title: _.t("location.location") } });
+      td0Content = V.h("span", { props: { className: "icon ion-location", title: _.t("location.location") } });
     }
 
-    let td1Content = h(
+    let td1Content = V.h(
       "a",
       {
         props: {
@@ -86,12 +86,12 @@ export const Nodelist = function (): CanSetData & CanRender {
       node.hostname,
     );
 
-    return h("tr", [
-      h("td", td0Content),
-      h("td", td1Content),
-      h("td", showUptime(node.uptime)),
-      h("td", node.neighbours.length),
-      h("td", node.clients),
+    return V.h("tr", [
+      V.h("td", td0Content),
+      V.h("td", td1Content),
+      V.h("td", showUptime(node.uptime)),
+      V.h("td", node.neighbours.length),
+      V.h("td", node.clients),
     ]);
   }
 
@@ -101,8 +101,8 @@ export const Nodelist = function (): CanSetData & CanRender {
     let h2 = document.createElement("h2");
     h2.textContent = _.t("node.all");
     d.appendChild(h2);
-    table.el.classList.add("node-list");
-    d.appendChild(table.el);
+    table.el.elm.classList.add("node-list");
+    d.appendChild(table.el.elm);
   };
 
   self.setData = function setData(nodesData: ObjectsLinksAndNodes) {

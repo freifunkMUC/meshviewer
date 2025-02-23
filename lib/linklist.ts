@@ -1,10 +1,10 @@
-import { h } from "snabbdom";
-import { _ } from "./utils/language.js";
-import { Heading, SortTable } from "./sorttable.js";
-import * as helper from "./utils/helper.js";
-import { Link } from "./utils/node.js";
-import { CanSetData, ObjectsLinksAndNodes } from "./datadistributor.js";
-import { CanRender } from "./container.js";
+import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
+import { _ } from "./utils/language";
+import { Heading, SortTable } from "./sorttable";
+import * as helper from "./utils/helper";
+import { Link } from "./utils/node";
+import { CanSetData, ObjectsLinksAndNodes } from "./datadistributor";
+import { CanRender } from "./container";
 
 function linkName(link: Link) {
   return (link.source ? link.source.hostname : link.id) + " – " + link.target.hostname;
@@ -52,7 +52,7 @@ export const Linklist = function (linkScale: (t: any) => any): CanRender & CanSe
 
   function renderRow(link: Link) {
     let td1Content = [
-      h(
+      V.h(
         "a",
         {
           props: {
@@ -68,23 +68,23 @@ export const Linklist = function (linkScale: (t: any) => any): CanRender & CanSe
       ),
     ];
 
-    return h("tr", [
-      h(
+    return V.h("tr", [
+      V.h(
         "td",
-        h("span", {
+        V.h("span", {
           props: {
             className: "icon ion-" + (link.type.indexOf("wifi") === 0 ? "wifi" : "share-alt"),
             title: _.t(link.type),
           },
         }),
       ),
-      h("td", td1Content),
-      h(
+      V.h("td", td1Content),
+      V.h(
         "td",
         { style: { color: linkScale((link.source_tq + link.target_tq) / 2) } },
         helper.showTq(link.source_tq) + " - " + helper.showTq(link.target_tq),
       ),
-      h("td", helper.showDistance(link)),
+      V.h("td", helper.showDistance(link)),
     ]);
   }
 
@@ -92,8 +92,8 @@ export const Linklist = function (linkScale: (t: any) => any): CanRender & CanSe
     let h2 = document.createElement("h2");
     h2.textContent = _.t("node.links");
     d.appendChild(h2);
-    table.el.classList.add("link-list");
-    d.appendChild(table.el);
+    table.el.elm.classList.add("link-list");
+    d.appendChild(table.el.elm);
   };
 
   self.setData = function setData(d: ObjectsLinksAndNodes) {

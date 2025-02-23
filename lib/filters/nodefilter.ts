@@ -1,4 +1,4 @@
-import { FilterMethod, ObjectsLinksAndNodes } from "../datadistributor.js";
+import { FilterMethod, ObjectsLinksAndNodes } from "../datadistributor";
 
 export const NodeFilter = function (filter: FilterMethod) {
   return function (data: ObjectsLinksAndNodes) {
