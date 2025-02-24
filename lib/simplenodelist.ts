@@ -1,12 +1,10 @@
 import moment from "moment";
-import { classModule, eventListenersModule, h, init, propsModule, styleModule, VNode } from "snabbdom";
+import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
 
-import { _ } from "./utils/language.js";
-import * as helper from "./utils/helper.js";
-import { ObjectsLinksAndNodes } from "./datadistributor.js";
-import { Node } from "./utils/node.js";
-
-const patch = init([classModule, propsModule, styleModule, eventListenersModule]);
+import { _ } from "./utils/language";
+import * as helper from "./utils/helper";
+import { ObjectsLinksAndNodes } from "./datadistributor";
+import { Node } from "./utils/node";
 
 export const SimpleNodelist = function (nodesState: string, field: string, title: string) {
   const self = {
@@ -39,18 +37,18 @@ export const SimpleNodelist = function (nodesState: string, field: string, title
 
       tbody = document.createElement("tbody");
       // @ts-ignore
-      tbody.last = h("tbody");
+      tbody.last = V.h("tbody");
       table.appendChild(tbody);
     }
 
     let items = nodeList.map(function (node: Node) {
       let router = window.router;
-      let td0Content: null | VNode = null;
+      let td0Content = "";
       if (helper.hasLocation(node)) {
-        td0Content = h("span", { props: { className: "icon ion-location", title: _.t("location.location") } });
+        td0Content = V.h("span", { props: { className: "icon ion-location", title: _.t("location.location") } });
       }
 
-      let td1Content = h(
+      let td1Content = V.h(
         "a",
         {
           props: {
@@ -66,11 +64,11 @@ export const SimpleNodelist = function (nodesState: string, field: string, title
         node.hostname,
       );
 
-      return h("tr", [h("td", td0Content), h("td", td1Content), h("td", moment(node[field]).from(data.now))]);
+      return V.h("tr", [V.h("td", td0Content), V.h("td", td1Content), V.h("td", moment(node[field]).from(data.now))]);
     });
 
-    let tbodyNew = h("tbody", items);
-    patch(tbody, tbodyNew);
+    let tbodyNew = V.h("tbody", items);
+    tbody = V.patch(tbody, tbodyNew);
   };
 
   return self;

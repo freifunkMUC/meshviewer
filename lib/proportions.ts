@@ -1,14 +1,12 @@
-import { classModule, eventListenersModule, h, init, propsModule, styleModule, toVNode } from "snabbdom";
+import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
 import * as d3Interpolate from "d3-interpolate";
-import { _ } from "./utils/language.js";
-import { DataDistributor, Filter, ObjectsLinksAndNodes } from "./datadistributor.js";
-import { GenericNodeFilter } from "./filters/genericnode.js";
-import * as helper from "./utils/helper.js";
-import { compare } from "./utils/version.js";
+import { _ } from "./utils/language";
+import { DataDistributor, Filter, ObjectsLinksAndNodes } from "./datadistributor";
+import { GenericNodeFilter } from "./filters/genericnode";
+import * as helper from "./utils/helper";
+import { compare } from "./utils/version";
 import { Moment } from "moment";
-import { Node } from "./utils/node.js";
-
-const patch = init([classModule, propsModule, styleModule, eventListenersModule]);
+import { Node } from "./utils/node";
 
 export const Proportions = function (filterManager: ReturnType<typeof DataDistributor>) {
   const self = {
@@ -60,7 +58,7 @@ export const Proportions = function (filterManager: ReturnType<typeof DataDistri
     };
   }
 
-  function fillTable(name: string, table: HTMLTableElement | undefined, data: any[][]): HTMLTableElement {
+  function fillTable(name: string, table: HTMLTableElement | undefined, data: any[][]) {
     if (!table) {
       table = document.createElement("table");
     }
@@ -77,12 +75,12 @@ export const Proportions = function (filterManager: ReturnType<typeof DataDistri
 
       let filter = GenericNodeFilter(_.t(name), data[2], data[0], data[3]);
 
-      let a = h("a", { on: { click: addFilter(filter) } }, data[0]);
+      let a = V.h("a", { on: { click: addFilter(filter) } }, data[0]);
 
-      let th = h("th", a);
-      let td = h(
+      let th = V.h("th", a);
+      let td = V.h(
         "td",
-        h(
+        V.h(
           "span",
           {
             style: {
@@ -94,11 +92,10 @@ export const Proportions = function (filterManager: ReturnType<typeof DataDistri
         ),
       );
 
-      return h("tr", [th, td]);
+      return V.h("tr", [th, td]);
     });
-    let tableNew = h("table", { props: { className: "proportion" } }, items);
-    patch(table, tableNew);
-    return table;
+    let tableNew = V.h("table", { props: { className: "proportion" } }, items);
+    return V.patch(table, tableNew);
   }
 
   self.setData = function setData(data: ObjectsLinksAndNodes) {
@@ -233,10 +230,10 @@ export const Proportions = function (filterManager: ReturnType<typeof DataDistri
         "{LOCALE}": _.locale(),
       };
       config.globalInfos.forEach(function (globalInfo) {
-        img.push(h("h2", globalInfo.name));
-        img.push(helper.showStat(globalInfo, subst));
+        img.push(V.h("h2", globalInfo.name));
+        img.push(helper.showStat(V, globalInfo, subst));
       });
-      patch(images, h("div", img));
+      V.patch(images, V.h("div", img));
     }
   };
 
@@ -246,10 +243,12 @@ export const Proportions = function (filterManager: ReturnType<typeof DataDistri
       h2.classList.add("proportion-header");
       h2.textContent = _.t(heading);
       h2.onclick = function onclick() {
-        table.classList.toggle("hide");
+        // @ts-ignore
+        table.elm.classList.toggle("hide");
       };
       el.appendChild(h2);
-      el.appendChild(table);
+      // @ts-ignore
+      el.appendChild(table.elm);
     }
   };
   return self;

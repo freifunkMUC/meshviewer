@@ -1,6 +1,6 @@
-import * as helper from "../utils/helper.js";
+import * as helper from "../utils/helper";
 import { ZoomTransform } from "d3-zoom";
-import { Link, Node } from "../utils/node.js";
+import { Link, Node } from "../utils/node";
 
 type Highlight = { type: string; id: string } | null;
 

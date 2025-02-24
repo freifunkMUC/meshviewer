@@ -1,9 +1,10 @@
 import { Moment } from "moment";
-import { h, VNode } from "snabbdom";
+import { snabbdomBundle as sv } from "snabbdom/snabbdom.bundle";
+import { VNode } from "snabbdom/vnode";
 import { Map } from "leaflet";
-import { _ } from "./language.js";
-import { Node } from "./node.js";
-import { LinkInfo, NodeInfo } from "../config_default.js";
+import { _ } from "./language";
+import { Node } from "./node";
+import { LinkInfo, NodeInfo } from "../config_default";
 
 export const get = function get(url: string) {
   return new Promise(function (resolve, reject) {
@@ -123,19 +124,19 @@ export const showTq = function showTq(tq: number) {
   return (tq * 100).toFixed(0) + "%";
 };
 
-export function attributeEntry(children: VNode[], label: string, value: string | VNode) {
+export const attributeEntry = function attributeEntry(V: typeof sv, children: VNode[], label: string, value: string) {
   if (value !== undefined) {
     if (typeof value !== "object") {
-      value = h("td", value);
+      value = V.h("td", value);
     }
 
-    children.push(h("tr", [h("th", _.t(label)), value]));
+    children.push(V.h("tr", [V.h("th", _.t(label)), value]));
   }
-}
+};
 
-export function showStat(linkInfo: LinkInfo, subst: ReplaceMapping): HTMLDivElement {
-  let content = h("img", {
-    props: {
+export const showStat = function showStat(V: typeof sv, linkInfo: LinkInfo | NodeInfo, subst: ReplaceMapping) {
+  let content = V.h("img", {
+    attrs: {
       src: listReplace(linkInfo.image, subst),
       width: linkInfo.width,
       height: linkInfo.height,
@@ -144,12 +145,12 @@ export function showStat(linkInfo: LinkInfo, subst: ReplaceMapping): HTMLDivElem
   });
 
   if (linkInfo.href) {
-    return h(
+    return V.h(
       "div",
-      h(
+      V.h(
         "a",
         {
-          props: {
+          attrs: {
             href: listReplace(linkInfo.href, subst),
             target: "_blank",
             title: listReplace(linkInfo.title, subst),
@@ -157,18 +158,18 @@ export function showStat(linkInfo: LinkInfo, subst: ReplaceMapping): HTMLDivElem
         },
         content,
       ),
-    ) as unknown as HTMLDivElement;
+    );
   }
-  return h("div", content) as unknown as HTMLDivElement;
-}
+  return V.h("div", content);
+};
 
-export const showDevicePicture = function showDevicePicture(pictures: string, subst: ReplaceMapping) {
+export const showDevicePicture = function showDevicePicture(V: typeof sv, pictures: string, subst: ReplaceMapping) {
   if (!pictures) {
     return null;
   }
 
-  return h("img", {
-    props: { src: listReplace(pictures, subst), class: "hw-img" },
+  return V.h("img", {
+    attrs: { src: listReplace(pictures, subst), class: "hw-img" },
     on: {
       // hide non-existent images
       error: function (e: any) {

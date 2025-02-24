@@ -1,14 +1,12 @@
-import { h, classModule, eventListenersModule, init, propsModule, styleModule } from "snabbdom";
-import { _ } from "../utils/language.js";
+import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
+import { _ } from "../utils/language";
 
-import { SortTable } from "../sorttable.js";
-import * as helper from "../utils/helper.js";
-import nodef, { Neighbour, Node as NodeData, NodeId } from "../utils/node.js";
-import { NodeInfo } from "../config_default.js";
+import { SortTable } from "../sorttable";
+import * as helper from "../utils/helper";
+import nodef, { Neighbour, Node as NodeData, NodeId } from "../utils/node";
+import { NodeInfo } from "../config_default";
 
-const patch = init([classModule, propsModule, styleModule, eventListenersModule]);
-
-function showStatImg(nodeInfo: NodeInfo, node: NodeData): HTMLDivElement {
+function showStatImg(nodeInfo: NodeInfo, node: NodeData) {
   let config = window.config;
   let subst = {
     "{NODE_ID}": node.node_id,
@@ -17,7 +15,7 @@ function showStatImg(nodeInfo: NodeInfo, node: NodeData): HTMLDivElement {
     "{TIME}": node.lastseen.format("DDMMYYYYHmmss"),
     "{LOCALE}": _.locale(),
   };
-  return helper.showStat(nodeInfo, subst);
+  return helper.showStat(V, nodeInfo, subst);
 }
 
 function showDevicePictures(pictures: string, device: NodeData) {
@@ -40,7 +38,7 @@ function showDevicePictures(pictures: string, device: NodeData) {
       .replace(/^-+/, "")
       .replace(/-+$/, ""),
   };
-  return helper.showDevicePicture(pictures, subst);
+  return helper.showDevicePicture(V, pictures, subst);
 }
 
 export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any, nodeDict: { [k: NodeId]: NodeData }) {
@@ -48,7 +46,7 @@ export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any
   let router = window.router;
 
   function nodeLink(node: NodeData) {
-    return h(
+    return V.h(
       "a",
       {
         props: {
@@ -74,21 +72,21 @@ export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any
 
   function showGateway(node: NodeData) {
     let gatewayCols = [
-      h("span", [nodeIdLink(node.gateway_nexthop), h("br"), _.t("node.nexthop")]),
-      h("span", { props: { className: "ion-arrow-right-c" } }),
-      h("span", [nodeIdLink(node.gateway), h("br"), "IPv4"]),
+      V.h("span", [nodeIdLink(node.gateway_nexthop), V.h("br"), _.t("node.nexthop")]),
+      V.h("span", { props: { className: "ion-arrow-right-c" } }),
+      V.h("span", [nodeIdLink(node.gateway), V.h("br"), "IPv4"]),
     ];
 
     if (node.gateway6 !== undefined) {
-      gatewayCols.push(h("span", [nodeIdLink(node.gateway6), h("br"), "IPv6"]));
+      gatewayCols.push(V.h("span", [nodeIdLink(node.gateway6), V.h("br"), "IPv6"]));
     }
 
-    return h("td", { props: { className: "gateway" } }, gatewayCols);
+    return V.h("td", { props: { className: "gateway" } }, gatewayCols);
   }
 
   function renderNeighbourRow(connecting: Neighbour) {
     let icons = [
-      h("span", {
+      V.h("span", {
         props: {
           className: "icon ion-" + (connecting.link.type.indexOf("wifi") === 0 ? "wifi" : "share-alt"),
           title: _.t(connecting.link.type),
@@ -96,15 +94,15 @@ export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any
       }),
     ];
     if (helper.hasLocation(connecting.node)) {
-      icons.push(h("span", { props: { className: "ion-location", title: _.t("location.location") } }));
+      icons.push(V.h("span", { props: { className: "ion-location", title: _.t("location.location") } }));
     }
 
-    return h("tr", [
-      h("td", icons),
-      h("td", nodeLink(connecting.node)),
-      h("td", connecting.node.clients),
-      h("td", [
-        h(
+    return V.h("tr", [
+      V.h("td", icons),
+      V.h("td", nodeLink(connecting.node)),
+      V.h("td", connecting.node.clients),
+      V.h("td", [
+        V.h(
           "a",
           {
             style: {
@@ -123,7 +121,7 @@ export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any
           helper.showTq(connecting.link.source_tq) + " - " + helper.showTq(connecting.link.target_tq),
         ),
       ]),
-      h("td", helper.showDistance(connecting.link)),
+      V.h("td", helper.showDistance(connecting.link)),
     ]);
   }
 
@@ -201,15 +199,18 @@ export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any
   el.appendChild(images);
 
   self.render = function render() {
-    patch(header, h("h2", node.hostname));
+    V.patch(header, V.h("h2", node.hostname));
 
     let devicePictures = showDevicePictures(config.devicePictures, node);
     let devicePicturesContainerData = {
-      props: {
+      attrs: {
         class: "hw-img-container",
       },
     };
-    patch(devicePicture, devicePictures ? h("div", devicePicturesContainerData, devicePictures) : h("div"));
+    devicePicture = V.patch(
+      devicePicture,
+      devicePictures ? V.h("div", devicePicturesContainerData, devicePictures) : V.h("div"),
+    );
 
     let children = [];
 
@@ -233,31 +234,33 @@ export function Node(el: HTMLElement, node: NodeData, linkScale: (t: any) => any
 
       if (field) {
         if (typeof field !== "object") {
-          field = h("td", field);
+          field = V.h("td", field);
         }
-        children.push(h("tr", [row.name !== undefined ? h("th", _.t(row.name)) : null, field]));
+        children.push(V.h("tr", [row.name !== undefined ? V.h("th", _.t(row.name)) : null, field]));
       }
     });
 
-    children.push(h("tr", [h("th", _.t("node.gateway")), showGateway(node)]));
+    children.push(V.h("tr", [V.h("th", _.t("node.gateway")), showGateway(node)]));
 
-    let elNew = h("table", children);
-    patch(table, elNew);
-    table.classList.add("attributes");
+    let elNew = V.h("table", children);
+    table = V.patch(table, elNew);
+    // @ts-ignore
+    table.elm.classList.add("attributes");
 
-    patch(neighbours, h("h3", _.t("node.link", node.neighbours.length) + " (" + node.neighbours.length + ")"));
+    V.patch(neighbours, V.h("h3", _.t("node.link", node.neighbours.length) + " (" + node.neighbours.length + ")"));
     if (node.neighbours.length > 0) {
       tableNeighbour.setData(node.neighbours);
-      tableNeighbour.el.classList.add("node-links");
+      // @ts-ignore
+      tableNeighbour.el.elm.classList.add("node-links");
     }
 
     if (config.nodeInfos) {
       let img = [];
       config.nodeInfos.forEach(function (nodeInfo) {
-        img.push(h("h4", nodeInfo.name) as unknown as HTMLElement);
+        img.push(V.h("h4", nodeInfo.name));
         img.push(showStatImg(nodeInfo, node));
       });
-      patch(images, h("div", img));
+      images = V.patch(images, V.h("div", img));
     }
   };
 

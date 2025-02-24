@@ -6,12 +6,12 @@ import * as d3Selection from "d3-selection";
 import * as d3Timer from "d3-timer";
 import * as d3Zoom from "d3-zoom";
 
-import math from "./utils/math.js";
-import draw, { MapLink } from "./forcegraph/draw.js";
-import { Sidebar } from "./sidebar.js";
+import math from "./utils/math";
+import draw, { MapLink } from "./forcegraph/draw";
+import { Sidebar } from "./sidebar";
 import { ClientPointEvent } from "d3-selection";
-import { ObjectsLinksAndNodes } from "./datadistributor.js";
-import { Link, Node } from "./utils/node.js";
+import { ObjectsLinksAndNodes } from "./datadistributor";
+import { Link, Node } from "./utils/node";
 
 export const ForceGraph = function (linkScale: (t: any) => any, sidebar: ReturnType<typeof Sidebar>) {
   const self = {

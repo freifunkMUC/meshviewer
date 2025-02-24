@@ -1,14 +1,14 @@
 import * as L from "leaflet";
 
-import { ClientLayer } from "./map/clientlayer.js";
-import { LabelLayer } from "./map/labellayer.js";
-import { Button } from "./map/button.js";
-import "./map/activearea.js";
-import { Sidebar } from "./sidebar.js";
+import { ClientLayer } from "./map/clientlayer";
+import { LabelLayer } from "./map/labellayer";
+import { Button } from "./map/button";
+import "./map/activearea";
+import { Sidebar } from "./sidebar";
 import { LatLng } from "leaflet";
-import { Geo } from "./config_default.js";
-import { Link, LinkId, Node, NodeId } from "./utils/node.js";
-import { ObjectsLinksAndNodes } from "./datadistributor.js";
+import { Geo } from "./config_default";
+import { Link, LinkId, Node, NodeId } from "./utils/node";
+import { ObjectsLinksAndNodes } from "./datadistributor";
 
 let options = {
   worldCopyJump: true,

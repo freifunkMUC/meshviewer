@@ -15,10 +15,3 @@ updates:
     commit-message:
       # Prefix all commit messages with "npm: "
       prefix: "npm"
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "monthly"
-    commit-message:
-      # Prefix all commit messages with "npm: "
-      prefix: "npm"
