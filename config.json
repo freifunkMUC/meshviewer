@@ -393,7 +393,7 @@
      "devicePictures": "https://map.aachen.freifunk.net/pictures-svg/{MODEL_NORMALIZED}.svg",
      "devicePicturesSource": "<a href='https://github.com/freifunk/device-pictures'>https://github.com/freifunk/device-pictures</a>",
      "devicePicturesLicense": "CC-BY-NC-SA 4.0",
-    "deprecation_text": "Dieses Gerät ist leider veraltet und wird voraussichtlich nach 2024 nicht mehr durch Software-Updates unterstützt - <a href='https://ffmuc.net/freifunkmuc/2023/12/08/supportende-von-8-64-routern/'>Mehr Infos</a>",
+    "deprecation_text": "Dieses Gerät ist leider veraltet und wird voraussichtlich nach 2025 nicht mehr durch Software-Updates unterstützt - <a href='https://ffmuc.net/freifunkmuc/2023/12/08/supportende-von-8-64-routern/'>Mehr Infos</a>",
     "eol_text": "Dieses Gerät ist leider veraltet und wird nicht mehr durch Software-Updates unterstützt - <a href='https://bitte-router-erneuern.ffmuc.net/'>Mehr Infos</a>",
     "deprecation_enabled": true,
     "eol": [
