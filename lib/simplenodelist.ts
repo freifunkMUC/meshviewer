@@ -1,74 +1,71 @@
 import moment from "moment";
-import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
+import { classModule, eventListenersModule, h, init, propsModule, styleModule, VNode } from "snabbdom";
 
-import { _ } from "./utils/language";
-import * as helper from "./utils/helper";
-import { ObjectsLinksAndNodes } from "./datadistributor";
-import { Node } from "./utils/node";
+import { _ } from "./utils/language.js";
+import * as helper from "./utils/helper.js";
+import { ObjectsLinksAndNodes } from "./datadistributor.js";
+import { Node } from "./utils/node.js";
+
+const patch = init([classModule, propsModule, styleModule, eventListenersModule]);
 
 export const SimpleNodelist = function (nodesState: string, field: string, title: string) {
   const self = {
     render: undefined,
     setData: undefined,
   };
-  let el: HTMLElement;
-  let tbody: HTMLTableSectionElement;
+  let listContainer: VNode = h("div");
 
   self.render = function render(d: HTMLElement) {
-    el = d;
+    let containerEl = document.createElement("div");
+    d.appendChild(containerEl);
+    listContainer = patch(containerEl, listContainer);
   };
 
   self.setData = function setData(data: ObjectsLinksAndNodes) {
     let nodeList = data.nodes[nodesState];
 
-    if (nodeList.length === 0) {
-      tbody = null;
-      return;
-    }
+    let newContainer = h("div");
 
-    if (!tbody) {
-      let h2 = document.createElement("h2");
-      h2.textContent = title;
-      el.appendChild(h2);
+    if (nodeList.length > 0) {
+      let items = nodeList.map(function (node: Node) {
+        let router = window.router;
+        let td0Content: null | VNode = null;
+        if (helper.hasLocation(node)) {
+          td0Content = h("span", { props: { className: "icon ion-location", title: _.t("location.location") } });
+        }
 
-      let table = document.createElement("table");
-      table.classList.add("node-list");
-      el.appendChild(table);
-
-      tbody = document.createElement("tbody");
-      // @ts-ignore
-      tbody.last = V.h("tbody");
-      table.appendChild(tbody);
-    }
-
-    let items = nodeList.map(function (node: Node) {
-      let router = window.router;
-      let td0Content = "";
-      if (helper.hasLocation(node)) {
-        td0Content = V.h("span", { props: { className: "icon ion-location", title: _.t("location.location") } });
-      }
-
-      let td1Content = V.h(
-        "a",
-        {
-          props: {
-            className: ["hostname", node.is_online ? "online" : "offline"].join(" "),
-            href: router.generateLink({ node: node.node_id }),
-          },
-          on: {
-            click: function (e: Event) {
-              router.fullUrl({ node: node.node_id }, e);
+        let td1Content = h(
+          "a",
+          {
+            props: {
+              className: ["hostname", node.is_online ? "online" : "offline"].join(" "),
+              href: router.generateLink({ node: node.node_id }),
+            },
+            on: {
+              click: function (e: Event) {
+                router.fullUrl({ node: node.node_id }, e);
+              },
             },
           },
-        },
-        node.hostname,
-      );
+          node.hostname,
+        );
 
-      return V.h("tr", [V.h("td", td0Content), V.h("td", td1Content), V.h("td", moment(node[field]).from(data.now))]);
-    });
+        return h("tr", [h("td", td0Content), h("td", td1Content), h("td", moment(node[field]).from(data.now))]);
+      });
 
-    let tbodyNew = V.h("tbody", items);
-    tbody = V.patch(tbody, tbodyNew);
+      newContainer.children = [
+        h("h2", title),
+        h(
+          "table",
+          {
+            props: { className: "node-list" },
+          },
+          h("tbody", items),
+        ),
+      ];
+    }
+
+    listContainer = patch(listContainer, newContainer);
   };
 
   return self;

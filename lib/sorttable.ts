@@ -1,5 +1,5 @@
-import { snabbdomBundle as V } from "snabbdom/snabbdom.bundle";
-import { _ } from "./utils/language";
+import { classModule, eventListenersModule, h, init, propsModule, styleModule, VNode } from "snabbdom";
+import { _ } from "./utils/language.js";
 
 export interface Heading {
   name: string;
@@ -8,15 +8,22 @@ export interface Heading {
   class?: string;
 }
 
+const patch = init([classModule, propsModule, styleModule, eventListenersModule]);
+
 export const SortTable = function (
   headings: Heading[],
   sortIndex: number,
   renderRow: (element: any, i: number, all: []) => any,
 ) {
-  const self = { el: undefined, setData: undefined };
+  const self: {
+    el: HTMLElement;
+    setData: (data: any[]) => void;
+  } = { el: undefined, setData: undefined };
   let data: any[];
   let sortReverse = false;
   self.el = document.createElement("table");
+
+  let vnode: VNode = null;
 
   function sortTable(i: number) {
     sortReverse = i === sortIndex ? !sortReverse : false;
@@ -53,7 +60,7 @@ export const SortTable = function (
           properties.className += sortReverse ? " sort-up" : " sort-down";
         }
 
-        return V.h("th", { props: properties }, name);
+        return h("th", { props: properties }, name);
       });
 
       let links = data.slice(0).sort(headings[sortIndex].sort);
@@ -62,12 +69,12 @@ export const SortTable = function (
         links = links.reverse();
       }
 
-      children.push(V.h("thead", V.h("tr", th)));
-      children.push(V.h("tbody", links.map(renderRow)));
+      children.push(h("thead", h("tr", th)));
+      children.push(h("tbody", links.map(renderRow)));
     }
 
-    let elNew = V.h("table", children);
-    self.el = V.patch(self.el, elNew);
+    let elNew = h("table", children);
+    vnode = patch(vnode ?? self.el, elNew);
   }
 
   self.setData = function setData(d: any[]) {
