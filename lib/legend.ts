@@ -16,29 +16,29 @@ export const Legend = function (language: ReturnType<typeof Language>) {
     let totalOnlineNodes = data.nodes.online.length;
 
     let config = window.config;
-    var filterNodes = [];
+    var filtertNodes = [];
     if (config.domainNames) {
-      let domains = config.domainNames.filter(function (domain) {
+      let filtertdomains = config.domainNames.filter(function (domain) {
           if(typeof domain.filterClients !== 'undefined'){
             return domain.filterClients;
           }else{
             return false
           }
         });
-        domains.forEach((domain) => {
-          filterNodes.push(domain.name)
-          filterNodes.push(domain.domain)
+        filtertdomains.forEach((domain) => {
+          filtertNodes.push(domain.name)
+          filtertNodes.push(domain.domain)
         })
     }
 
     let totalNodesFiltert = data.nodes.online.filter(function (node) {
       var isFiltert = true
       // filter nodes based on the domain
-      if(filterNodes.includes(node.domain)){
+      if(filtertNodes.includes(node.domain)){
         isFiltert = false
       }
       // also filter nodes based on the firmware base (Domainname) for custom respondd
-      if(filterNodes.includes(node.firmware.base))[
+      if(filtertNodes.includes(node.firmware.base))[
         isFiltert = false
       ]
       return isFiltert
