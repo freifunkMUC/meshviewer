@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         target: [webfrontend03, webfrontend04, webfrontend05, webfrontend06]
-        node-version: [20.x]
+        node-version: [24.x]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
