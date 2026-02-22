@@ -220,6 +220,15 @@
       }
     },
     {
+      "name": "FFMUC OSM Proxy (Night)",
+      "url": "https://tiles.ext.ffmuc.net/osm/{z}/{x}/{y}.png",
+      "config": {
+        "maxZoom": 19,
+        "mode": "night",
+        "attribution": "&copy; Openstreetmap | &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
+      }
+    },
+    {
       "name": "FFMUC OSM.HOT Proxy",
       "url": "https://tiles.ext.ffmuc.net/hot/{z}/{x}/{y}.png",
       "config": {
