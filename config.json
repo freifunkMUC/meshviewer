@@ -211,6 +211,28 @@
   "dataPath": ["https://map.ffmuc.net/data/"],
   "siteName": "Freifunk München",
   "mapLayers": [
+
+
+
+    {
+      "name": "versatiles light",
+      "url": "light.json",
+      "type": "vector",
+      "config": {
+        "maxZoom": 19,
+        "attribution": "<a href='https://github.com/freifunk/meshviewer/issues' target='_blank'>Report Bug</a> | Map data &copy; <a href\"http://openstreetmap.org\">OpenStreetMap</a> contributor"
+      }
+    },
+        {
+      "name": "versatiles dark",
+      "url": "dark.json",
+      "type": "vector",
+      "config": {
+        "maxZoom": 19,
+        "mode": "night",
+        "attribution": "<a href='https://github.com/freifunk/meshviewer/issues' target='_blank'>Report Bug</a> | Map data &copy; <a href\"http://openstreetmap.org\">OpenStreetMap</a> contributor"
+      }
+    },
     {
       "name": "FFMUC OSM Proxy",
       "url": "https://tiles.ext.ffmuc.net/osm/{z}/{x}/{y}.png",
