@@ -358,6 +358,10 @@
     {
       "domain": "omada_respondd_fallback",
       "name": "Omada"
+    },
+    {
+      "domain": "ffmuc_dlg",
+      "name": "Dillingen"
     }
   ],
   "linkList": [
