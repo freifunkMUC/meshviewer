@@ -199,13 +199,13 @@
       "name": "Clients",
       "title": "Clients pro Segment",
       "href": "https://stats.ffmuc.net",
-      "image": "https://stats.ffmuc.net/render/d-solo/kUoZ2DRWz/network-overview?panelId=6&orgId=1&theme=light&width=500&height=500"
+      "image": "https://stats.ffmuc.net/render/d-solo/kUoZ2DRWz/network-overview?panelId=6&orgId=1&theme=light&width=500&height=500&hideLogo=true"
     },
     {
       "name": "Traffic",
       "title": "Traffic pro Server",
       "href": "https://stats.ffmuc.net",
-      "image": "https://stats.ffmuc.net/render/d-solo/kUoZ2DRWz/network-overview?panelId=7&orgId=1&theme=light&width=500&height=500"
+      "image": "https://stats.ffmuc.net/render/d-solo/kUoZ2DRWz/network-overview?panelId=7&orgId=1&theme=light&width=500&height=500&hideLogo=true"
     }
   ],
   "dataPath": ["https://map.ffmuc.net/data/"],
