@@ -165,31 +165,31 @@
   "nodeInfos": [
     {
       "name": "Clients (24 Stunden)",
-      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?orgId=1&panelId=2&var-nodeid={NODE_ID}&width=450&height=300&theme=light&from=now-24h",
+      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?orgId=1&panelId=2&var-nodeid={NODE_ID}&width=450&height=300&theme=light&from=now-24h&hideLogo=true",
       "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}",
       "title": "Clients - Knoten {NODE_ID}"
     },
     {
       "name": "Traffic (24 Stunden)",
-      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=6&var-nodeid={NODE_ID}&width=450&height=400&theme=light&from=now-24h",
+      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=6&var-nodeid={NODE_ID}&width=450&height=400&theme=light&from=now-24h&hideLogo=true",
       "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}",
       "title": "Traffic - Knoten {NODE_ID}"
     },
     {
       "name": "Clients (7 Tage)",
-      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=2&var-nodeid={NODE_ID}&width=450&height=300&theme=light&from=now-7d",
+      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=2&var-nodeid={NODE_ID}&width=450&height=300&theme=light&from=now-7d&hideLogo=true",
       "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}",
       "title": "Clients - Knoten {NODE_ID}"
     },
     {
       "name": "Traffic (7 Tage)",
-      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=6&var-nodeid={NODE_ID}&width=450&height=400&theme=light&from=now-7d",
+      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=6&var-nodeid={NODE_ID}&width=450&height=400&theme=light&from=now-7d&hideLogo=true",
       "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}",
       "title": "Traffic - Knoten {NODE_ID}"
     },
     {
       "name": "Uptime (7 Tage)",
-      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=8&var-nodeid={NODE_ID}&width=450&height=400&theme=light&from=now-7d",
+      "image": "https://stats.ffmuc.net/render/d-solo/hRIn3dRWk/mesh-nodes?panelId=8&var-nodeid={NODE_ID}&width=450&height=400&theme=light&from=now-7d&hideLogo=true",
       "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}",
       "title": "Traffic - Knoten {NODE_ID}"
     }
