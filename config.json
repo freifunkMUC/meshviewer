@@ -362,6 +362,10 @@
     {
       "domain": "ffmuc_dlg",
       "name": "Dillingen"
+    },
+    {
+      "domain": "ffbachtal_bachtal",
+      "name": "Bachtal"
     }
   ],
   "linkList": [
