@@ -7,6 +7,38 @@
   "clientZoom": 15,
   "fullscreen": true,
   "fullscreenFrame": true,
+  "grafana": {
+    "url": "https://stats.ffmuc.net",
+    "orgId": 1
+  },
+  "nodeCharts": [
+    {
+      "name": "Clients",
+      "datasourceUid": "000000005",
+      "datasourceType": "influxdb",
+      "query": "SELECT mean(\"clients.total\") AS \"Clients\" FROM \"node\" WHERE (\"nodeid\" =~ /^$node$/) AND $timeFilter GROUP BY time($interval) fill(null)",
+      "format": ".0f",
+      "from": "now-7d",
+      "to": "now-1m",
+      "maxDataPoints": 300,
+      "series": [{ "name": "Clients", "color": "#73BF69" }]
+    },
+    {
+      "name": "Traffic",
+      "datasourceUid": "000000005",
+      "datasourceType": "influxdb",
+      "query": "SELECT non_negative_derivative(mean(\"traffic.rx.bytes\"), 1s) * 8 AS \"RX\", non_negative_derivative(mean(\"traffic.tx.bytes\"), 1s) * 8 AS \"TX\" FROM \"node\" WHERE (\"nodeid\" =~ /^$node$/) AND $timeFilter GROUP BY time($interval) fill(none)",
+      "format": ".2~s",
+      "unitSuffix": "bit/s",
+      "from": "now-7d",
+      "to": "now-1m",
+      "maxDataPoints": 300,
+      "series": [
+        { "name": "RX", "color": "#73BF69" },
+        { "name": "TX", "color": "#F2495C", "negate": true }
+      ]
+    }
+  ],
   "nodeAttr": [
     {
       "name": "node.status",
