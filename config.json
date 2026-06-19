@@ -8,7 +8,7 @@
   "fullscreen": true,
   "fullscreenFrame": true,
   "grafana": {
-    "url": "https://stats.ffmuc.net",
+    "url": "/grafana",
     "orgId": 1
   },
   "nodeCharts": [
