@@ -11,6 +11,13 @@
     "url": "/grafana",
     "orgId": 1
   },
+  "nodeInfos": [
+    {
+      "name": "Grafana",
+      "title": "Statistiken für Knoten {NODE_ID} in Grafana öffnen",
+      "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}"
+    }
+  ],
   "nodeCharts": [
     {
       "name": "Clients",
