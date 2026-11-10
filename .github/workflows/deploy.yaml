@@ -30,7 +30,7 @@ jobs:
           remote_host: ${{ matrix.target }}.ext.ffmuc.net
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
-      - run: cp config-ffdon.json build/config.json
+      - run: jq --slurpfile geo geo-ffdon.json '.geo = $geo[0]' config-ffdon.json > build/config.json
       - name: rsync deployments (ffdon)
         uses: burnett01/rsync-deployments@v9
         with:
