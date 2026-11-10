@@ -69,14 +69,7 @@
       "value": "Clients"
     }
   ],
-  "supportedLocale": [
-    "en",
-    "de",
-    "cz",
-    "fr",
-    "tr",
-    "ru"
-  ],
+  "supportedLocale": ["en", "de", "cz", "fr", "tr", "ru"],
   "icon": {
     "base": {
       "fillOpacity": 0.6,
@@ -169,9 +162,7 @@
     }
   },
   "cacheBreaker": "ffdon0001",
-  "dataPath": [
-    "https://map.freifunk-donau-ries.de/data/"
-  ],
+  "dataPath": ["https://map.freifunk-donau-ries.de/data/"],
   "siteName": "Freifunk Donau-Ries",
   "mapLayers": [
     {
@@ -230,14 +221,8 @@
     }
   ],
   "fixedCenter": [
-    [
-      49.040118581,
-      10.39177297
-    ],
-    [
-      48.583421129,
-      11.050377402
-    ]
+    [49.040118581, 10.39177297],
+    [48.583421129, 11.050377402]
   ],
   "domainNames": [
     {
