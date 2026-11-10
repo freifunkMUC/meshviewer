@@ -260,11 +260,11 @@
   "linkList": [
     {
       "title": "Chat",
-      "href": "https://chat.ffmuc.net"
+      "href": "https://chat.ffmuc.net/freifunk/channels/support-freifunk-donau-ries"
     },
     {
       "title": "Tickets",
-      "href": "https://tickets.ffmuc.net"
+      "href": "https://www.freifunk-donau-ries.de/support/"
     },
     {
       "title": "Statistiken",
@@ -272,11 +272,15 @@
     },
     {
       "title": "Kontakt",
-      "href": "https://ffmuc.net/kontakt"
+      "href": "https://www.freifunk-donau-ries.de/kontakt/"
     },
     {
       "title": "Impressum",
-      "href": "https://ffmuc.net/impressum/"
+      "href": "https://www.freifunk-donau-ries.de/impressum/"
+    },
+    {
+      "title": "map.ffmuc.net",
+      "href": "https://map.ffmuc.net/#!/de/map"
     }
   ],
   "deprecation_text": "Dieses Gerät ist leider veraltet und wird voraussichtlich nach 2025 nicht mehr durch Software-Updates unterstützt - <a href='https://ffmuc.net/freifunkmuc/2023/12/08/supportende-von-8-64-routern/'>Mehr Infos</a>",
@@ -422,5 +426,12 @@
     "Ubiquiti EdgeRouter X",
     "Ubiquiti EdgeRouter X SFP",
     "Xiaomi Redmi Router AX6S"
+  ],
+  "nodeInfos": [
+    {
+      "name": "Grafana",
+      "title": "Statistiken für Knoten {NODE_ID} in Grafana öffnen",
+      "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid={NODE_ID}"
+    }
   ]
 }
