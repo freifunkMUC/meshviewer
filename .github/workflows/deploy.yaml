@@ -30,3 +30,13 @@ jobs:
           remote_host: ${{ matrix.target }}.ext.ffmuc.net
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
+      - run: jq --slurpfile geo geo-ffdon.json '.geo = $geo[0]' config-ffdon.json > build/config.json
+      - name: rsync deployments (ffdon)
+        uses: burnett01/rsync-deployments@v9
+        with:
+          switches: -avzr --delete --exclude .ssh
+          path: build/
+          remote_path: /srv/www/map.freifunk-donau-ries.de/
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net
+          remote_user: deploy-map
+          remote_key: ${{ secrets.DEPLOY_KEY }}
