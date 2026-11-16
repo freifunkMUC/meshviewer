@@ -21,6 +21,7 @@
   "nodeCharts": [
     {
       "name": "Clients",
+      "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid=$node&from=$from&to=$to",
       "datasourceUid": "000000005",
       "datasourceType": "influxdb",
       "query": "SELECT mean(\"clients.total\") AS \"Clients\" FROM \"node\" WHERE (\"nodeid\" =~ /^$node$/) AND $timeFilter GROUP BY time($interval) fill(null)",
@@ -32,6 +33,7 @@
     },
     {
       "name": "Traffic",
+      "href": "https://stats.ffmuc.net/d/hRIn3dRWk/mesh-nodes?orgId=1&var-nodeid=$node&from=$from&to=$to",
       "datasourceUid": "000000005",
       "datasourceType": "influxdb",
       "query": "SELECT non_negative_derivative(mean(\"traffic.rx.bytes\"), 1s) * 8 AS \"RX\", non_negative_derivative(mean(\"traffic.tx.bytes\"), 1s) * 8 AS \"TX\" FROM \"node\" WHERE (\"nodeid\" =~ /^$node$/) AND $timeFilter GROUP BY time($interval) fill(none)",
@@ -71,10 +73,6 @@
     {
       "name": "node.coordinates",
       "value": "GeoURI"
-    },
-    {
-      "name": "node.contact",
-      "value": "owner"
     },
     {
       "name": "node.hardware",
@@ -195,7 +193,7 @@
       "radius": 16
     },
     "innerCircle": {
-      "stroke:": true,
+      "stroke": true,
       "color": "#ffffff",
       "fillColor": "#4285F4",
       "weight": 1.5,
@@ -230,7 +228,7 @@
       "url": "https://tiles.ext.ffmuc.net/osm/{z}/{x}/{y}.png",
       "config": {
         "maxZoom": 19,
-        "mode": "night",
+        "invertInDarkMode": true,
         "attribution": "&copy; Openstreetmap | &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
       }
     },
@@ -248,27 +246,6 @@
       "config": {
         "maxZoom": 20,
         "attribution": "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-      }
-    }
-  ],
-  "backup_map_provider_ffmuc": [
-    {
-      "name": "HERE",
-      "url": "https://{s}.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?app_id=YOUR_KEY&app_code=YOUR_CODE&lg=deu",
-      "config": {
-        "attribution": "Map &copy; 1987-2014 <a href=\"http://developer.here.com\">HERE</a>",
-        "subdomains": "1234",
-        "maxZoom": 20
-      }
-    },
-    {
-      "name": "HERE.hybridDay",
-      "url": "https://{s}.aerial.maps.api.here.com/maptile/2.1/maptile/newest/{variant}/{z}/{x}/{y}/256/png8?app_id=YOUR_KEY&app_code=YOUR_CODE&lg=deu",
-      "config": {
-        "attribution": "Map &copy; 1987-2014 <a href=\"http://developer.here.com\">HERE</a>",
-        "subdomains": "1234",
-        "variant": "hybrid.day",
-        "maxZoom": 20
       }
     }
   ],
@@ -389,7 +366,7 @@
     },
     {
       "title": "Kontakt",
-      "href": "https://ffmuc.net/kontakt"
+      "href": "https://ffmuc.net/kontakt/"
     },
     {
       "title": "Impressum",
