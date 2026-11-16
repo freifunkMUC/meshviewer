@@ -21,10 +21,6 @@
       "value": "GeoURI"
     },
     {
-      "name": "node.contact",
-      "value": "owner"
-    },
-    {
       "name": "node.hardware",
       "value": "model"
     },
@@ -143,7 +139,7 @@
       "radius": 16
     },
     "innerCircle": {
-      "stroke:": true,
+      "stroke": true,
       "color": "#ffffff",
       "fillColor": "#4285F4",
       "weight": 1.5,
@@ -178,7 +174,7 @@
       "url": "https://tiles.ext.ffmuc.net/osm/{z}/{x}/{y}.png",
       "config": {
         "maxZoom": 19,
-        "mode": "night",
+        "invertInDarkMode": true,
         "attribution": "&copy; Openstreetmap | &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
       }
     },
@@ -196,27 +192,6 @@
       "config": {
         "maxZoom": 20,
         "attribution": "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-      }
-    }
-  ],
-  "backup_map_provider_ffmuc": [
-    {
-      "name": "HERE",
-      "url": "https://{s}.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?app_id=YOUR_KEY&app_code=YOUR_CODE&lg=deu",
-      "config": {
-        "attribution": "Map &copy; 1987-2014 <a href=\"http://developer.here.com\">HERE</a>",
-        "subdomains": "1234",
-        "maxZoom": 20
-      }
-    },
-    {
-      "name": "HERE.hybridDay",
-      "url": "https://{s}.aerial.maps.api.here.com/maptile/2.1/maptile/newest/{variant}/{z}/{x}/{y}/256/png8?app_id=YOUR_KEY&app_code=YOUR_CODE&lg=deu",
-      "config": {
-        "attribution": "Map &copy; 1987-2014 <a href=\"http://developer.here.com\">HERE</a>",
-        "subdomains": "1234",
-        "variant": "hybrid.day",
-        "maxZoom": 20
       }
     }
   ],
