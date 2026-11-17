@@ -30,7 +30,8 @@ jobs:
           remote_host: ${{ matrix.target }}.ext.ffmuc.net
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
-      - run: jq --slurpfile geo geo-ffdon.json '.geo = $geo[0]' config-ffdon.json > build/config.json
+      - name: config.json (ffdon; device lists from config.json)
+        run: jq --slurpfile geo geo-ffdon.json --slurpfile muc config.json '.geo = $geo[0] | . + ($muc[0] | {eol, deprecated, deprecation_enabled})' config-ffdon.json > build/config.json
       - name: rsync deployments (ffdon)
         uses: burnett01/rsync-deployments@v9
         with:
