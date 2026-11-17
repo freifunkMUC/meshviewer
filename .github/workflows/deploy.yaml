@@ -36,7 +36,7 @@ jobs:
         with:
           switches: -avzr --delete --exclude .ssh
           path: build/
-          remote_path: /srv/www/map.freifunk-donau-ries.de/
+          remote_path: /srv/www/map.ffdon.net/
           remote_host: ${{ matrix.target }}.ext.ffmuc.net
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}

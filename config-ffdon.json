@@ -158,7 +158,7 @@
     }
   },
   "cacheBreaker": "ffdon0001",
-  "dataPath": ["https://map.freifunk-donau-ries.de/data/"],
+  "dataPath": ["/data/"],
   "siteName": "Freifunk Donau-Ries",
   "mapLayers": [
     {
