@@ -41,3 +41,14 @@ jobs:
           remote_host: ${{ matrix.target }}.ext.ffmuc.net
           remote_user: deploy-map
           remote_key: ${{ secrets.DEPLOY_KEY }}
+      - name: config.json (parker; device lists from config.json)
+        run: jq --slurpfile muc config.json '. + ($muc[0] | {eol, deprecated, deprecation_enabled})' config-parker.json > build/config.json
+      - name: rsync deployments (parker)
+        uses: burnett01/rsync-deployments@v9
+        with:
+          switches: -avzr --delete --exclude .ssh
+          path: build/
+          remote_path: /srv/www/map-parker.ffmuc.net/
+          remote_host: ${{ matrix.target }}.ext.ffmuc.net
+          remote_user: deploy-map
+          remote_key: ${{ secrets.DEPLOY_KEY }}
